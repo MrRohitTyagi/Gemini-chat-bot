@@ -34,33 +34,36 @@ function combineHistoryAndBoilerplate(boilerplate, chatHistory) {
 }
 
 async function chatWithHistory(prompt, tries = 1, res) {
-  if (tries > 3) throw new Error("Maximum tries surpassed");
+  try {
+    const { chatHistory, boilerplate } = await getHistoryAndBoilerplate();
+    const finalHistory = combineHistoryAndBoilerplate(boilerplate, chatHistory);
 
-  const { chatHistory, boilerplate } = await getHistoryAndBoilerplate();
-  const finalHistory = combineHistoryAndBoilerplate(boilerplate, chatHistory);
+    // return finalHistory;
 
-  // return finalHistory;
+    const chat = model.startChat({
+      history: finalHistory,
+      generationConfig: { maxOutputTokens: 100 },
+    });
 
-  const chat = model.startChat({
-    history: finalHistory,
-    generationConfig: { maxOutputTokens: 100 },
-  });
+    const result = await chat.sendMessage(prompt);
+    const response = await result.response;
+    let text = response.text();
 
-  const result = await chat.sendMessage(prompt);
-  const response = await result.response;
-  let text = response.text();
+    // if (!text) {
+    //   text = await chatWithHistory(prompt, tries + 1);
+    // }
 
-  // if (!text) {
-  //   text = await chatWithHistory(prompt, tries + 1);
-  // }
+    const chats = [
+      { role: "user", parts: prompt },
+      { role: "model", parts: text },
+    ];
 
-  const chats = [
-    { role: "user", parts: prompt },
-    { role: "model", parts: text },
-  ];
-
-  res.send(text);
-  await updateHistory(chats);
+    res.send(text);
+    // await updateHistory(chats);
+  } catch (error) {
+    console.log("error", error);
+    res.status(400).send("Something went wrong please try again");
+  }
 }
 
 async function updateHistory(moreChats) {
