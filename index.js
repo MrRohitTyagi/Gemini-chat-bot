@@ -1,8 +1,11 @@
 import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
-import dotenv from "dotenv";
+app.use(cors({ origin: true, methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
+app.options("*", cors());
 
 dotenv.config();
 connectDB();
