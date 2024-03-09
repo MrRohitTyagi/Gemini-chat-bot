@@ -11,7 +11,7 @@ const genAI = new GoogleGenerativeAI(KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 async function getHistoryAndBoilerplate() {
-  const chatHistoryPromise = chatHistoryModel.find().lean();
+  const chatHistoryPromise = chatHistoryModel.find().select("-chatblock._id").lean();
   const boilerplatePromise = boilerplateModel
     .find()
     .select("-_id -identifier -__v")
@@ -38,7 +38,8 @@ async function chatWithHistory(prompt, tries = 1, res) {
     const { chatHistory, boilerplate } = await getHistoryAndBoilerplate();
     const finalHistory = combineHistoryAndBoilerplate(boilerplate, chatHistory);
 
-    // return finalHistory;
+    // console.log("prompt", prompt);
+    // return res.send(finalHistory);
 
     const chat = model.startChat({
       history: finalHistory,
@@ -59,7 +60,7 @@ async function chatWithHistory(prompt, tries = 1, res) {
     ];
 
     res.send(text);
-    // await updateHistory(chats);
+    await updateHistory(chats);
   } catch (error) {
     console.log("error", error);
     res.status(400).send("Something went wrong please try again");
