@@ -60,7 +60,7 @@ async function chatWithHistory(prompt, tries = 1, res) {
     ];
 
     res.send(text);
-    await updateHistory(chats);
+    //await updateHistory(chats);
   } catch (error) {
     console.log("error", error);
     res.status(400).send("Something went wrong please try again");
