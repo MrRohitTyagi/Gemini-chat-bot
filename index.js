@@ -28,6 +28,10 @@ app.post("/generate/text", async (req, res) => {
   res.send(data);
 });
 
+app.get("/", async (req, res) => {
+  res.send({ success: true });
+});
+
 app.listen(5000, () => {
   // console.clear();
   console.log("server running at port 5000");
