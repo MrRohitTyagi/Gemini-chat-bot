@@ -1,17 +1,12 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  role: {
-    type: String,
-    required: true,
-    enum: ["model", "user"],
-  },
-  parts: {
+  text: {
     type: String,
     required: true,
   },
   identifier: {
-    enum: ["instructions", "description", "chat"],
+    enum: ["INS", "DEC"],
     type: String,
     required: true,
   },

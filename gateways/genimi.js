@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import chatHistoryModel from "../models/chat-history-model.js";
-// import boilerplateModel from "../models/boilerplate-model.js";
+import boilerplateModel from "../models/boilerplate-model.js";
 import dotenv from "dotenv";
-import fs from "fs";
 
 dotenv.config();
 
@@ -73,16 +72,28 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 //to generate ony text
 
-const instructions = `based on above text, answer the following question ,reply like i(rohit) is answering to someone, answer professionally with no grammatical error  like you are answering in a interview ,only reply what is asked,\n
- strictly follow these rules \n
-if the question is not relatable the no not answer and simply answer 'The question is Irrelevant try another question'\n
-if some greets with hi,hello etc then greet them back`;
+// const instructions = `based on above text, answer the following question ,reply like i(rohit) is answering to someone, answer professionally with no grammatical error  like you are answering in a interview ,only reply what is asked,\n
+//  strictly follow these rules \n
+// if the question is not relatable the no not answer and simply answer 'The question is Irrelevant try another question'\n
+// if some greets with hi,hello etc then greet them back`;
 
 async function generateText(prompt, res) {
   try {
-    const file = fs.readFileSync("./sample.txt", "utf8").toString();
+    // const summery = fs.readFileSync("./sample.txt", "utf8").toString();
+    // const file = await boilerplateModel.findOne({ identifier: "DEC" });
+    // const file = await boilerplateModel.create({
+    //   identifier: "INS",
+    //   text: instructions,
+    // });
 
-    const fullPrompt = `${file} \n ${instructions} \n ${prompt}`;
+    const [dec, ins] = await Promise.all([getsummery(), getins()]);
+
+    const instructions = ins.text;
+    const summery = dec.text;
+
+    // return res.send({ instructions, summery });
+
+    const fullPrompt = `${summery} \n ${instructions} \n ${prompt}`;
 
     const result = await model.generateContentStream(fullPrompt);
     const response = await result.response;
@@ -91,7 +102,7 @@ async function generateText(prompt, res) {
     updateHistory(prompt, text);
   } catch (error) {
     console.log("error", error);
-    res.status(400).send("Something went wrong");
+    res.status(400).send(error.message || "Something went wrong");
   }
 }
 async function updateHistory(question, answer) {
@@ -101,3 +112,29 @@ export {
   // chatWithHistory,
   generateText,
 };
+
+export function getsummery() {
+  return boilerplateModel
+    .findOne({ identifier: "DEC" })
+    .lean()
+    .select("text -_id");
+}
+export function getins() {
+  return boilerplateModel
+    .findOne({ identifier: "INS" })
+    .lean()
+    .select("text -_id");
+}
+
+export async function putsummery(text) {
+  return await boilerplateModel.findOneAndUpdate(
+    { identifier: "DEC" },
+    { text }
+  );
+}
+export async function putins(text) {
+  return await boilerplateModel.findOneAndUpdate(
+    { identifier: "INS" },
+    { text }
+  );
+}
