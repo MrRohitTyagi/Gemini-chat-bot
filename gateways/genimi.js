@@ -73,7 +73,10 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 //to generate ony text
 
-const instructions = `based on above text, answer the following question ,reply like a normal person world answer the questions, answer professionally with no grammatical error  like you are answering in a interview ,only reply what is asked,if the question is not relatable the no not answer and simply answer 'The question is Irrelevant try another question'`;
+const instructions = `based on above text, answer the following question ,reply like i(rohit) is answering to someone, answer professionally with no grammatical error  like you are answering in a interview ,only reply what is asked,\n
+ strictly follow these rules \n
+if the question is not relatable the no not answer and simply answer 'The question is Irrelevant try another question'\n
+if some greets with hi,hello etc then greet them back`;
 
 async function generateText(prompt, res) {
   try {
