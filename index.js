@@ -51,7 +51,7 @@ app.put("/api/vi/put-bio", async (req, res) => {
       return;
     }
     writeFileSync("./sample.txt", text);
-    res.send({ success: true, text });
+    res.send({ success: true });
   } catch (error) {}
 });
 
