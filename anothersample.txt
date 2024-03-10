@@ -5,9 +5,8 @@ few more points about me are :
 1 : I belong to bareilly ,uttar pradesh 
 2 : currently working from home /hybrid model
 3 : my position in current company is associate software engineer ,i joined the company on 10th-oct-2022
-4 : my age is 23
+4 :my age is 23
 5 : my date of birth is 11-10-1999
-6 : my email id "tyagi4366@gmail.com"
 
 Professional Experience
 1 Associate Software Engineer, Thoughts2Binary Consulting & Solutions LLP
