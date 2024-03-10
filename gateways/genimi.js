@@ -2,13 +2,21 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import chatHistoryModel from "../models/chat-history-model.js";
 import boilerplateModel from "../models/boilerplate-model.js";
 import dotenv from "dotenv";
+import { myCache } from "../index.js";
 
 dotenv.config();
-
+const generationConfig = {
+  maxOutputTokens: 100,
+  temperature: 0,
+  topP: 0.1,
+  topK: 16,
+};
 const KEY = process.env.GEMINI_KEY;
-
 const genAI = new GoogleGenerativeAI(KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-pro",
+  generationConfig,
+});
 
 // async function getHistoryAndBoilerplate() {
 //   const chatHistoryPromise = chatHistoryModel
@@ -79,24 +87,42 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 async function generateText(prompt, res) {
   try {
+    const { totalTokens } = await model.countTokens(prompt);
     // const summery = fs.readFileSync("./sample.txt", "utf8").toString();
     // const file = await boilerplateModel.findOne({ identifier: "DEC" });
     // const file = await boilerplateModel.create({
     //   identifier: "INS",
     //   text: instructions,
     // });
+    let instructions;
+    let summery;
+    if (totalTokens > 70) {
+      return res.send("Please shorten the question and try again");
+    }
 
-    const [dec, ins] = await Promise.all([getsummery(), getins()]);
+    const cacheinstructions = myCache.get("instructions");
+    const cachesummery = myCache.get("summery");
 
-    const instructions = ins.text;
-    const summery = dec.text;
+    if (!cachesummery || !cacheinstructions) {
+      const [dec, ins] = await Promise.all([getsummery(), getins()]);
+      console.log("INSIDE");
+      instructions = ins.text;
+      summery = dec.text;
 
-    // return res.send({ instructions, summery });
+      myCache.set("instructions", ins.text);
+      myCache.set("summery", dec.text);
+    } else {
+      console.log("OUTSIDE");
+      instructions = cacheinstructions;
+      summery = cachesummery;
+    }
 
-    const fullPrompt = `${summery} \n ${instructions} \n ${prompt}`;
+    console.log({ instructions, summery });
 
-    const result = await model.generateContentStream(fullPrompt);
-    const response = await result.response;
+    const fullPrompt = `${summery} \n ${instructions} \n ${prompt} ?`;
+
+    const result = await model.generateContent(fullPrompt);
+    const response = result.response;
     const text = response.text();
     res.send(text);
     updateHistory(prompt, text);
@@ -138,3 +164,12 @@ export async function putins(text) {
     { text }
   );
 }
+
+function clearcache() {
+  console.log("CLEARED");
+  myCache.set("instructions", "");
+  myCache.set("summery", "");
+}
+// setTimeout(() => {
+//   clearcache();
+// }, 1000);
