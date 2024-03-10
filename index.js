@@ -10,13 +10,14 @@ app.options("*", cors());
 dotenv.config();
 connectDB();
 
-import { chatWithHistory } from "./gateways/genimi.js";
+import { generateText } from "./gateways/genimi.js";
 import { connectDB } from "./utils/db.js";
 
 app.post("/api/v1/getresponse", async (req, res) => {
   try {
     const { prompt } = req.body;
-    chatWithHistory(prompt, 1, res);
+    // chatWithHistory(prompt, 1, res);
+    generateText(prompt, res);
   } catch (error) {
     console.log("error", error);
     res
@@ -25,10 +26,9 @@ app.post("/api/v1/getresponse", async (req, res) => {
   }
 });
 
-app.post("/generate/text", async (req, res) => {
+app.post("/api/v1/generate/text", async (req, res) => {
   const { prompt } = req.body;
-  const data = await generateText(prompt);
-  res.send(data);
+  await generateText(prompt, res);
 });
 
 app.get("/", async (req, res) => {

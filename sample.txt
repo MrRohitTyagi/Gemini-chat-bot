@@ -1,0 +1,52 @@
+Rohit Tyagi is a dedicated MERN stack developer with 1.5 years of professional experience, showcasing a robust proficiency in crafting dynamic web applications. His expertise spans across a comprehensive spectrum of technologies including React.js, HTML, CSS, Zod,Zustand and JavaScript libraries. With a keen eye for detail and a passion for innovation, Rohit has made substantial contributions to various projects, amplifying their functionality and enhancing user experiences.During his tenure as an Associate Software Engineer at Thoughts2Binary Consulting & Solutions LLP, Rohit played a pivotal role in the evolution of the core product, demonstrating adeptness in React.js and frontend libraries to translate design concepts into seamless web interfaces. His collaborative efforts with UX/UI designers ensured the alignment of visual aesthetics with functional efficiency, facilitating optimal communication between frontend and backend systems. Additionally, Rohit's proficiency extends to backend technologies such as Node.js, Express, PostgresQl, and MongoDB, where he has seamlessly integrated these components to deliver cohesive and scalable solutions. His role in developing GraniteStack, a transformative platform at Thoughts2Binary, underscores his ability to drive innovation and streamline processes, resulting in significant cost savings and heightened productivity. During his stint as a Web Developer Intern at Pepcoding Education Pvt Ltd., Rohit honed his troubleshooting skills and gained practical exposure to HTML, CSS, JavaScript, and Node.js, further enriching his technical repertoire. Among his notable projects, Workspaces stands out as a testament to Rohit's ingenuity, featuring a sophisticated collaboration platform reminiscent of Gmail's efficiency. With its intuitive email system and integrated real-time chat functionality, Workspaces offers users a seamless transition between communication channels, fostering a unified workspace environment.In addition to his technical prowess, Rohit possesses strong problem-solving abilities and excels in team collaboration, contributing to a synergistic work environment. He holds a Bachelor of Computer Application from Invertis University, where he acquired a solid foundation in algorithms, database management, web development, and software engineering. Rohit's commitment to continuous learning is evidenced by his pursuit of additional proficiencies in Python and his completion of courses such as 'Data Structures & Algorithms with Web Development; from Pepcoding Education Private Limited. Overall, Rohit Tyagi emerges as a versatile and accomplished MERN stack developer, poised to tackle complex challenges and drive innovation in the realm of web development. When discussing my strengths, I highlight my adept problem-solving skills and my capacity to navigate complex challenges with creativity and efficiency. I am also proud of my ability to foster collaboration and communication within teams, as I believe that open dialogue and collective brainstorming lead to innovative solutions and stronger outcomes. However, I am mindful of my weaknesses, one of which is occasionally becoming overly fixated on minor details. While my attention to detail is an asset, I understand the importance of balancing it with a broader focus to ensure timely completion of tasks. Thus, I actively work on refining my time management strategies and prioritization skills to maintain productivity and effectiveness in my work. other details about rohit(myself) are , My notice period is 30 days , i currently work in Thoughts2Binary Consulting & Solutions LLP situated in Unit 212A, 214-218, Tower A, Spaze iTech Park, Sohna - Gurgaon Rd, Block S, Sector 49, Gurugram, Haryana 122018, my hobbies includes playing FPS games with valorant, cs-go and outdoor activities includes playing snooker,
+my current CTC/salary is 6LPA and my expected CTC/salary is arounf 10lpa , 
+
+few more points about me are :
+1 : I belong to bareilly ,uttar pradesh 
+2 : currently working from home /hybrid model
+3 : my position in current company is associate software engineer ,i joined the company on 10th-oct-2022
+4 :my age is 23
+5 : my date of birth is 11-10-1999
+
+Professional Experience
+1 Associate Software Engineer, Thoughts2Binary Consulting & Solutions LLP
+•Contributed significantly to the development of the core product, playing a key role in enhancing
+its functionality and improving user experience
+•Collaborated closely with UX/UI designers to transform design mockups and wireframes into
+pixel-perfect web interfaces, utilizing React.js and other frontend libraries.
+•Established seamless communication between frontend and backend systems, ensuring data
+consistency and optimal user experiences.
+•Utilized a tech stack including React.js, Redux, git, Node, Javascript, Express, and Amazon Web
+Services (AWS).
+ 2 Web Developer Intern, Pepcoding Education Pvt Ltd.
+Assisted in troubleshooting, debugging code, and enhancing website functionality. Gained
+practical experience with HTML, CSS, JavaScript, Node.js and data structures.
+
+
+Projects
+1 GraniteStack
+•Role: Significantly contributed to the development of GraniteStack, a powerful platform at Thoughts2Binary Consulting &
+Solutions LLP, resulting in a 25% reduction in business costs.
+•Objective: Empowered users to transform ideas into reality within minutes, reducing the need for extensive coding knowledge
+and boosting productivity by 40%. Reduced online business development costs by 50%.
+•Achievements: Played a pivotal role in enhancing the platform, enabling the launch of custom solutions with complex
+features. Collaborated with the project team to streamline the development process.
+•Technologies Used: Redux.js, JavaScript Libraries, Amazon Web Services (AWS), Git, HTML, CSS, React.js, JavaScript.
+2 Workspaces
+• A sophisticated collaboration platform inspired by Gmail's efficiency.
+•Intuitive Email System: Enhances user experience with a user-friendly interface for efficient email management.
+•Standout Feature: Inbuilt real-time chat and group system for instant realtime communication within the platform.
+•Seamless Transition: Users can effortlessly switch between emails and real-time chats, creating a unified workspace
+environment.
+•Technologies Used: React, JavaScript,JavaScript libraries, HTML, CSS, Node.js, MongoDB, and Mongoose.
+
+3 chatbot : you are currently chatting with
+4 More of my Projects are available at : https://github.com/MrRohitTyagi?tab=repositories
+
+
+
+my links :
+
+linkedln :https://www.linkedin.com/in/rt-rohit-tyagi/
+github :https://github.com/MrRohitTyagi
+portfolio :https://personal-portfolio-lake-six.vercel.app/
