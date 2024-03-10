@@ -30,7 +30,7 @@ function combineHistoryAndBoilerplate(boilerplate, chatHistory) {
     return arr.concat(...c.chatblock);
   }, []);
 
-  return [...boilerplate, ...combinedHistory];
+  return [...boilerplate];
 }
 
 async function chatWithHistory(prompt, tries = 1, res) {
