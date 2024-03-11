@@ -11,7 +11,7 @@ import {
 } from "./gateways/genimi.js";
 import { connectDB } from "./utils/db.js";
 
-const myCache = new NodeCache({ stdTTL: 24 * 60 });
+
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: true, methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
@@ -19,8 +19,6 @@ app.options("*", cors());
 
 dotenv.config();
 connectDB();
-
-export { myCache };
 
 app.post("/api/v1/getresponse", async (req, res) => {
   try {

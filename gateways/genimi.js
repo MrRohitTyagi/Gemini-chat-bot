@@ -2,7 +2,9 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import chatHistoryModel from "../models/chat-history-model.js";
 import boilerplateModel from "../models/boilerplate-model.js";
 import dotenv from "dotenv";
-import { myCache } from "../index.js";
+
+import NodeCache from "node-cache";
+const myCache = new NodeCache({ stdTTL: 24 * 60 });
 
 dotenv.config();
 const generationConfig = {
