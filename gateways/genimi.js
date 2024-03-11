@@ -119,8 +119,6 @@ async function generateText(prompt, res) {
       summery = cachesummery;
     }
 
-    console.log({ instructions, summery });
-
     const fullPrompt = `${summery} \n ${instructions} \n ${prompt} ?`;
 
     const result = await model.generateContent(fullPrompt);
