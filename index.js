@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import NodeCache from "node-cache";
 import {
   generateText,
   getins,
@@ -10,7 +9,6 @@ import {
   putsummery,
 } from "./gateways/genimi.js";
 import { connectDB } from "./utils/db.js";
-
 
 const app = express();
 app.use(express.json());
@@ -23,8 +21,8 @@ connectDB();
 app.post("/api/v1/getresponse", async (req, res) => {
   try {
     const { prompt } = req.body;
-    // chatWithHistory(prompt, 1, res);
-    generateText(prompt, res);
+    const { status, text } = await generateText(prompt);
+    res.status(status).send(text);
   } catch (error) {
     console.log("error", error);
     res
@@ -35,7 +33,8 @@ app.post("/api/v1/getresponse", async (req, res) => {
 
 app.post("/api/v1/generate/text", async (req, res) => {
   const { prompt } = req.body;
-  await generateText(prompt, res);
+  const { status, text } = await generateText(prompt);
+  res.status(status).send(text);
 });
 
 app.get("/", async (req, res) => {

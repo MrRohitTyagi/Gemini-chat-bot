@@ -16,7 +16,7 @@ const generationConfig = {
 const KEY = process.env.GEMINI_KEY;
 const genAI = new GoogleGenerativeAI(KEY);
 const model = genAI.getGenerativeModel({
-  model: "gemini-pro",
+  model: "gemini-1.5-flash",
   generationConfig,
 });
 
@@ -87,19 +87,16 @@ const model = genAI.getGenerativeModel({
 // if the question is not relatable the no not answer and simply answer 'The question is Irrelevant try another question'\n
 // if some greets with hi,hello etc then greet them back`;
 
-async function generateText(prompt, res) {
+async function generateText(prompt) {
   try {
     const { totalTokens } = await model.countTokens(prompt);
-    // const summery = fs.readFileSync("./sample.txt", "utf8").toString();
-    // const file = await boilerplateModel.findOne({ identifier: "DEC" });
-    // const file = await boilerplateModel.create({
-    //   identifier: "INS",
-    //   text: instructions,
-    // });
     let instructions;
     let summery;
     if (totalTokens > 70) {
-      return res.send("Please shorten the question and try again");
+      return {
+        text: "Please shorten the question and try again",
+        status: "400",
+      };
     }
 
     const cacheinstructions = myCache.get("instructions");
@@ -124,11 +121,11 @@ async function generateText(prompt, res) {
     const result = await model.generateContent(fullPrompt);
     const response = result.response;
     const text = response.text();
-    res.send(text);
     updateHistory(prompt, text);
+    return { text, status: 200 };
   } catch (error) {
     console.log("error", error);
-    res.status(400).send(error.message || "Something went wrong");
+    return { text: error.message || "Something went wrong", status: 400 };
   }
 }
 async function updateHistory(question, answer) {
