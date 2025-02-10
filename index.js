@@ -54,6 +54,16 @@ app.get("/api/v1/get-summary", async (req, res) => {
   } catch (error) {}
 });
 
+app.get("/api/v1/get-instructions", async (req, res) => {
+  try {
+    const ins = await getins();
+
+    const instructions = ins.text;
+
+    res.send(instructions);
+  } catch (error) {}
+});
+
 app.put("/api/v1/put-summery", async (req, res) => {
   try {
     const { text } = req.body;
@@ -66,9 +76,8 @@ app.put("/api/v1/put-summery", async (req, res) => {
   } catch (error) {}
 });
 
-app.put("/api/v1/put-instruntions", async (req, res) => {
+app.put("/api/v1/put-instructions", async (req, res) => {
   try {
-    console.log("req.body", req.body.text);
     const { text } = req.body;
 
     if (!text || text === "") {
