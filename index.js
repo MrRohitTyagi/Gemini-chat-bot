@@ -9,6 +9,7 @@ import {
   putsummery,
 } from "./gateways/genimi.js";
 import { connectDB } from "./utils/db.js";
+import withImageRouter from "./routes/withImage.js";
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,8 @@ app.options("*", cors());
 
 dotenv.config();
 connectDB();
+
+app.use("/api/v2/getresponse", withImageRouter);
 
 app.post("/api/v1/getresponse", async (req, res) => {
   try {
@@ -41,7 +44,7 @@ app.get("/", async (req, res) => {
   res.send({ success: true });
 });
 
-app.get("/api/vi/get-summary", async (req, res) => {
+app.get("/api/v1/get-summary", async (req, res) => {
   try {
     const [dec, ins] = await Promise.all([getsummery(), getins()]);
 
@@ -51,7 +54,7 @@ app.get("/api/vi/get-summary", async (req, res) => {
   } catch (error) {}
 });
 
-app.put("/api/vi/put-summery", async (req, res) => {
+app.put("/api/v1/put-summery", async (req, res) => {
   try {
     const { text } = req.body;
     if (!text || text === "") {
@@ -63,7 +66,7 @@ app.put("/api/vi/put-summery", async (req, res) => {
   } catch (error) {}
 });
 
-app.put("/api/vi/put-instruntions", async (req, res) => {
+app.put("/api/v1/put-instruntions", async (req, res) => {
   try {
     console.log("req.body", req.body.text);
     const { text } = req.body;
