@@ -5,7 +5,7 @@ dotenv.config();
 
 const generationConfig = {
   maxOutputTokens: 100,
-  temperature: 0,
+  temperature: 1.5,
   topP: 0.1,
   topK: 16,
 };
