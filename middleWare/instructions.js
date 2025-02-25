@@ -5,6 +5,11 @@ import { localInstruction } from "../constants/instruction.js";
 const myCache = new NodeCache({ stdTTL: 24 * 60 });
 
 export async function getInstructions(req, res, next) {
+  const ins = await getins();
+
+  req.instructions = ins.text;
+  next();
+  return;
   try {
     let instructions;
     const cacheInstructions = myCache.get("instructions");

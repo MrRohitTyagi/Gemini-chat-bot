@@ -6,7 +6,8 @@ import { getInstructions } from "../middleWare/instructions.js";
 const router = Router();
 
 router.post("/", checkTokenCount, getInstructions, async (req, res) => {
-  const data = await genWithImage({ res, req });
+  const data = await genWithImage({ req });
+  console.log(data);
   res.send(data);
 });
 export default router;

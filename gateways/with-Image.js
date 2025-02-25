@@ -11,8 +11,12 @@ function fileToGenerativePart(path, mimeType) {
 }
 const imagePart = fileToGenerativePart("../backend/resume.png", "image/png");
 
-export async function genWithImage({ req, res }) {
-  const finalPrompt = `${req.instructions} \n ${req.prompt}`;
-  const result = await GeminiModel.generateContent([finalPrompt, imagePart]);
-  return result.response.text();
+export async function genWithImage({ req }) {
+  try {
+    const finalPrompt = `${req.instructions} \n ${req.prompt}`;
+    const result = await GeminiModel.generateContent([finalPrompt, imagePart]);
+    return result.response.text();
+  } catch (error) {
+    return "Something went wrong please try again";
+  }
 }
