@@ -75,6 +75,9 @@ few more points about me are :
 4 : my age is 25
 5 : my date of birth is 11-10-1999
 6 : my email id "tyagi4366@gmail.com"
+7 : my notice period is 60 days
+8 : my hobbies are playing snooker, coading... 
+
 
 4 More of my Projects are available at : https://github.com/MrRohitTyagi?tab=repositories
 
