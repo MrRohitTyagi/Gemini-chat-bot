@@ -1,15 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import {
-  generateText,
-  getins,
-  getsummery,
-  putins,
-  putsummery,
-} from "./gateways/genimi.js";
-import { connectDB } from "./utils/db.js";
-import withImageRouter from "./routes/withImage.js";
+import { getins, getsummery, putins, putsummery } from "./gateways/genimi.js";
+// import { connectDB } from "./utils/db.js";
+
+import { generateAIresponse } from "./gateways/geminiV2.js";
 
 const app = express();
 app.use(express.json());
@@ -17,28 +12,19 @@ app.use(cors({ origin: true, methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
 app.options("*", cors());
 
 dotenv.config();
-connectDB();
+// connectDB();
 
-app.use("/api/v2/getresponse", withImageRouter);
+//NEW
 
-app.post("/api/v1/getresponse", async (req, res) => {
-  try {
-    const { prompt } = req.body;
-    const { status, text } = await generateText(prompt);
-    res.status(status).send(text);
-  } catch (error) {
-    console.log("error", error);
-    res
-      .status(400)
-      .send({ success: false, msg: error.message || "Something went wrong" });
-  }
-});
-
-app.post("/api/v1/generate/text", async (req, res) => {
+app.post("/api/v3/response", async (req, res) => {
   const { prompt } = req.body;
-  const { status, text } = await generateText(prompt);
-  res.status(status).send(text);
+  const response = await generateAIresponse(prompt);
+
+  res.status(200).send({
+    response: response,
+  });
 });
+//NEW
 
 app.get("/", async (req, res) => {
   res.send({ success: true });
