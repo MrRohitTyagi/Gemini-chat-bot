@@ -32,6 +32,13 @@ app.get("/api/v3/online", async (req, res) => {
 });
 //NEW
 
+app.get("/", async (req, res) => {
+  res.status(200).send({
+    response: true,
+    msg: "Server is running fine",
+  });
+});
+
 app.listen(5000, () => {
   // console.clear();
   console.log("server running at port 5000");
