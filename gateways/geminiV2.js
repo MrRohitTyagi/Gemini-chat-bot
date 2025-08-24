@@ -9,7 +9,35 @@ dotenv.config({
 console.log("process.env", process.env.GEMINI_KEY);
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
 
-async function generateAIresponse(prompt) {
+function structureHistory(history) {
+  return history.map((message) => ({
+    role: message.role,
+    parts: [{ text: message.parts }],
+  }));
+}
+
+async function withHistory(prompt, history) {
+  const chatHistory = structureHistory(history);
+  console.log("chatHistory", chatHistory);
+  const chat = ai.chats.create({
+    config: {
+      systemInstruction: localInstruction + "\n\n" + localSummary,
+      thinkingConfig: {
+        thinkingBudget: 0,
+      },
+    },
+    model: "gemini-2.5-flash",
+    history: chatHistory,
+  });
+  const res = await chat.sendMessage({
+    message: prompt,
+  });
+  console.log("res", res.text);
+  return res.text;
+}
+
+async function generateAIresponse(prompt, history) {
+  return withHistory(prompt, history);
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: `${localSummary}\n\n${prompt}`,

@@ -17,8 +17,8 @@ dotenv.config({ path: ".env" });
 //NEW
 
 app.post("/api/v3/response", async (req, res) => {
-  const { prompt } = req.body;
-  const response = await generateAIresponse(prompt);
+  const { prompt, history } = req.body;
+  const response = await generateAIresponse(prompt,history);
 
   res.status(200).send({
     response: response,
