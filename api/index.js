@@ -39,9 +39,5 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.listen(5000, () => {
-  // console.clear();
-  console.log("server running at port 5000");
-});
 
 export default app;
