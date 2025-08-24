@@ -39,7 +39,7 @@ SaaS platform focused on business solutions.
 - Conducted research and assisted the new business scoping efforts, resulting in the acquisition of 3 clients.  
 - Tech Stack: React, Redux, TypeScript, ReactFlow, Formik, RxJS, Yup, Grommet, Styled-components, Amazon Web Services  
 
-Mendyboard.online  
+Mondayboard.online  
 Comprehensive task management solution.  
 - Developed a comprehensive task management system allowing users to create, update, and delete tasks seamlessly.  
 - Real-time notifications and updates for seamless team collaboration using WebSockets.  
