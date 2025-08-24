@@ -15,20 +15,28 @@ dotenv.config({ path: ".env" });
 // connectDB();
 
 //NEW
-
 app.post("/api/v3/response", async (req, res) => {
-  const { prompt, history } = req.body;
-  const response = await generateAIresponse(prompt,history);
-
-  res.status(200).send({
-    response: response,
-  });
+  try {
+    const { prompt, history } = req.body;
+    const response = await generateAIresponse(prompt, history);
+    res.status(200).json({
+      response: response,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 app.get("/api/v3/online", async (req, res) => {
-  res.status(200).send({
-    response: true,
-  });
+  try {
+    res.status(200).json({
+      response: true,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 //NEW
 

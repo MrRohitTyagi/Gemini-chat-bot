@@ -5,14 +5,14 @@ Professional Experience
 
 Software Engineer  
 Brevo  
-03/2023 – present  
+03/2025 – present  | Noida sector 16 ,india 
 - Part of the Design System team, responsible for building robust and scalable components that are used by developers across multiple products.  
 - Contributed to creating reusable UI components ensuring consistency and maintainability across different applications.  
 - Collaborated with cross-functional teams to enhance the developer experience and streamline product development.  
 
 Software Engineer  
 Thoughts2Binary Private Limited  
-10/2022 – present | Gurgaon, India  
+10/2022 – 07/2025 | Gurgaon, India  
 - Contributed significantly to the development of the core product, playing a key role in enhancing its functionality, user interface and user experience.  
 - Mentored 2 new/junior team members, fostering a collaborative environment that improved code quality and adherence to best practices.  
 - Coordinated with UX/UI designers to transform design mock-ups and wireframes into pixel-perfect web interfaces, utilizing React.js and other frontend libraries.  
