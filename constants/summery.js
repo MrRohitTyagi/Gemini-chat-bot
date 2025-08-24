@@ -12,6 +12,4 @@ function info() {
 
 const localSummary = info();
 
-console.log(localSummary);
-
 export { localSummary };

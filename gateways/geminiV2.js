@@ -3,8 +3,10 @@ import { localInstruction } from "../constants/instruction.js";
 import { localSummary } from "../constants/summery.js";
 import dotenv from "dotenv";
 
-dotenv.config();
-
+dotenv.config({
+  path: ".env",
+});
+console.log("process.env", process.env.GEMINI_KEY);
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
 
 async function generateAIresponse(prompt) {
