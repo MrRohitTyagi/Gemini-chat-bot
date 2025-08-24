@@ -4,7 +4,7 @@ import cors from "cors";
 
 // import { connectDB } from "./utils/db.js";
 
-import { generateAIresponse } from "./gateways/geminiV2.js";
+import { generateAIresponse } from "../gateways/geminiV2.js";
 
 const app = express();
 app.use(express.json());
